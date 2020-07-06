@@ -1,4 +1,4 @@
-var html = document.querySelect('html')[0];
+var html = document.getElementsByTagName('html')[0];
 var currPadding = parseInt(localStorage.getItem('centerPage') || 0);
 
 if (currPadding > 0) {
@@ -24,7 +24,7 @@ function padding(currPadding + diff) {
 function increase() {
   var currPadding = parseInt(localStorage.getItem('centerPage') || 0);
   padding(currPadding, 50);
-  document.querySelector('body')[0].focus();
+  document.getElementsByTagName('body')[0].focus();
 
   return currPadding + 50;
 }
@@ -32,7 +32,7 @@ function increase() {
 function decrease() {
   var currPadding = parseInt(localStorage.getItem('centerPage') || 0);
   padding(currPadding, -50);
-  document.querySelector('body')[0].focus();
+  document.getElementsByTagName('body')[0].focus();
 }
 
 chrome.runtime.onMessage.addListener(
