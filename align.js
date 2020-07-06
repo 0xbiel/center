@@ -20,3 +20,28 @@ function padding(currPadding + diff) {
 
   localStorage.setItem('centerPage', newPadding);
 }
+
+function increase() {
+  var currPadding = parseInt(localStorage.getItem('centerPage') || 0);
+  padding(currPadding, 50);
+  document.querySelector('body')[0].focus();
+
+  return currPadding + 50;
+}
+
+function decrease() {
+  var currPadding = parseInt(localStorage.getItem('centerPage') || 0);
+  padding(currPadding, -50);
+  document.querySelector('body')[0].focus();
+}
+
+chrome.runtime.onMessage.addListener(
+    function (request) {
+    if (request.changePadding === "increase") {
+      return increase();
+    } 
+    else if (request.changePadding === "decrease") {
+      decrease();
+    }
+  }
+);
